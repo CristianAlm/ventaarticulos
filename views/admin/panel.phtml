@@ -1,0 +1,83 @@
+<section class="admin-panel">
+    <h2>Panel de Administración</h2>
+
+    <p class="logout">
+        Bienvenido, <?= htmlspecialchars($_SESSION['USER'] ?? 'Admin') ?> |
+        <a href="admin/logout">Cerrar sesión</a>
+    </p>
+
+    <div class="panel-section">
+        <h3>Categorías</h3>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($categorias as $cat): ?>
+                    <tr>
+                        <td><?= $cat['id_categoria'] ?></td>
+                        <td><?= htmlspecialchars($cat['nombre']) ?></td>
+                        <td>
+                            <a href="admin/editCategoria/<?= $cat['id_categoria'] ?>">✏️ Editar</a> |
+                            <a href="admin/deleteCategoria/<?= $cat['id_categoria'] ?>" onclick="return confirm('¿Seguro que deseas eliminar esta categoría?')">🗑 Eliminar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <form action="admin/addCategoria" method="POST" class="add-form">
+            <input type="text" name="nombre" placeholder="Nueva categoría" required>
+            <button type="submit">➕ Agregar</button>
+        </form>
+    </div>
+
+    <div class="panel-section">
+        <h3>Productos</h3>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($productos as $prod): ?>
+                    <tr>
+                        <td><?= $prod['id_producto'] ?></td>
+                        <td><?= htmlspecialchars($prod['nombre']) ?></td>
+                        <td>$<?= number_format($prod['precio'], 2) ?></td>
+                        <td><?= htmlspecialchars($prod['categoria_nombre']) ?></td>
+                        <td>
+                            <a href="admin/editProducto/<?= $prod['id_producto'] ?>">✏️ Editar</a> |
+                            <a href="admin/deleteProducto/<?= $prod['id_producto'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">🗑 Eliminar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <form action="admin/addProducto" method="POST" class="add-form">
+            <input type="text" name="nombre" placeholder="Nombre del producto" required>
+            <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+
+            <select name="categoria_id" required>
+                <option value="">-- Seleccionar categoría --</option>
+                <?php foreach($categorias as $cat): ?>
+                    <option value="<?= $cat['id_categoria'] ?>"><?= htmlspecialchars($cat['nombre']) ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <button type="submit">➕ Agregar</button>
+        </form>
+    </div>
+</section>
