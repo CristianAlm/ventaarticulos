@@ -16,11 +16,11 @@ class UserModel {
     }
 
     // Funciones (solo nombres, todavía no definidas)
-    public function login($username, $password); // Valida usuario y contraseña
-    public function logout(); // Cierra la sesión
-    public function isLoggedIn(); // Devuelve true/false si hay usuario logueado
-    public function getUserById($id); // Obtiene información de un usuario por su ID
-    public function createUser($username, $password, $role); // Crea un nuevo usuario
-    public function deleteUser($id); // Elimina un usuario
-    public function updateUser($id, $username, $password, $role); // Modifica datos de un usuario
+    //public function login($username, $password); // Valida usuario y contraseña
+    //public function logout(); // Cierra la sesión
+    //public function isLoggedIn(); // Devuelve true/false si hay usuario logueado
+    //public function getUserById($id); // Obtiene información de un usuario por su ID
+    //public function createUser($username, $password, $role); // Crea un nuevo usuario
+    //public function deleteUser($id); // Elimina un usuario
+    //public function updateUser($id, $username, $password, $role); // Modifica datos de un usuario
 }
