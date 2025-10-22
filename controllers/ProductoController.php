@@ -1,11 +1,35 @@
 <?php
 require_once 'models/ProductoModel.php';
+require_once 'views/ProductoView.php';
+
 
 class ProductoController {
+
     private $productoModel;
+    private $categoriaModel;
+    private $view;
 
     public function __construct() {
         $this->productoModel = new ProductoModel();
+        $this->categoriaModel = new CategoriaModel();
+        $this->view = new ProductoView();
+    }
+
+    public function detalleProducto($id_producto){
+        //pide al Modelo losdatos del producto y tambien
+        //pide la categoria para mostrar el nombre
+        //envia la informacion a una view
+
+        $producto = $this->productoModel->getProductoById($id_producto);
+
+        if (!$producto) {
+            $this->view->mostrarError("El producto no existe o fue eliminado.");
+            return;
+        }
+
+        $categoria = $this->categoriaModel->getCategoriaById($producto['id_categoria']);
+
+        $this->view->mostrarDetalle($producto, $categoria);
     }
 
     // Lista todos los productos

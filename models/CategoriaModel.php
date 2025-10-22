@@ -23,11 +23,17 @@ class CategoriaModel {
     }
 
     public function getCategorias() {
-    $sql = "SELECT * FROM categoria";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // devuelve un array asociativo
-}
+        $sql = "SELECT * FROM categoria";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // devuelve un array asociativo
+    }
+
+    public function getCategoriaById($id) {
+        $query = $this->db->prepare('SELECT * FROM categoria WHERE id_categoria = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_ASSOC); 
+    }
     
     // devuelve todas las categorías
     //public function getById($id);         // devuelve una categoría por su ID

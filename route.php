@@ -1,5 +1,11 @@
 <?php
-// Requerimos los controladores
+
+require_once 'config.php';
+
+require_once 'autodeploy.php';
+$deploy = new AutoDeploy();
+$deploy->run();
+
 require_once 'controllers/HomeController.php';
 require_once 'controllers/CategoriaController.php';
 require_once 'controllers/ProductoController.php';
@@ -38,7 +44,7 @@ switch ($params[0]) {
 
     case 'login':
         $controller = new AuthController();
-        $controller->login(); // muestra formulario de login o procesa login
+        $controller->login(); 
         break;
 
     case 'logout':

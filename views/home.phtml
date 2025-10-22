@@ -2,7 +2,11 @@
     <h2><?= $categoria['nombre'] ?></h2>
     <?php foreach($productos as $producto): ?>
         <?php if($producto['id_categoria'] == $categoria['id_categoria']): ?>
-            <p><?= $producto['nombre'] ?> - <?= $producto['precio'] ?></p>
+            <p>
+                <?php echo $producto['nombre'] . " - $" . $producto['precio']; ?>
+                <a href="index.php?action=producto/<?php echo $producto['id_producto']; ?>">Ver detalle</a>
+            </p>
+
         <?php endif; ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
