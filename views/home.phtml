@@ -1,3 +1,11 @@
+
+<h1>Bienvenido a la Tienda</h1>
+
+<p>Explorá nuestros productos por categoría:</p>
+<a href="categoria" class="btn">Ver Categorías</a>
+
+<hr>
+
 <?php foreach($categorias as $categoria): ?>
     <h2><?= $categoria['nombre'] ?></h2>
     <?php foreach($productos as $producto): ?>
@@ -6,7 +14,6 @@
                 <?php echo $producto['nombre'] . " - $" . $producto['precio']; ?>
                 <a href="index.php?action=producto/<?php echo $producto['id_producto']; ?>">Ver detalle</a>
             </p>
-
         <?php endif; ?>
     <?php endforeach; ?>
 <?php endforeach; ?>

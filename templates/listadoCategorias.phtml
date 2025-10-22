@@ -1,0 +1,16 @@
+<h1>Listado de Categorías</h1>
+
+<?php if (!empty($categorias)): ?>
+    <ul>
+        <?php foreach($categorias as $categoria): ?>
+            <li>
+                <?= htmlspecialchars($categoria['nombre']) ?>
+                <a href="index.php?action=categoria/<?= $categoria['id_categoria'] ?>">Ver productos</a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No hay categorías disponibles.</p>
+<?php endif; ?>
+
+<a href="index.php?action=home">Volver al inicio</a>

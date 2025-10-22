@@ -34,7 +34,13 @@ class ProductoModel {
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    }
+
+    public function getProductosPorCategoria($id_categoria){
+        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria = ?');
+        $query->execute([$id_categoria]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     //public function add($nombre, $precio, $descripcion, $idCategoria, $imagen = null); // agrega un producto

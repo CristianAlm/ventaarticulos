@@ -1,0 +1,16 @@
+<h1>Productos de la categoría: <?= htmlspecialchars($categoria['nombre']) ?></h1>
+
+<?php if (!empty($productos)): ?>
+    <ul>
+        <?php foreach($productos as $producto): ?>
+            <li>
+                <?= htmlspecialchars($producto['nombre']) ?> - $<?= htmlspecialchars($producto['precio']) ?>
+                <a href="index.php?action=producto/<?= $producto['id_producto'] ?>">Ver detalle</a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No hay productos disponibles en esta categoría.</p>
+<?php endif; ?>
+
+<a href="index.php?action=home">Volver al inicio</a>
