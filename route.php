@@ -44,8 +44,26 @@ switch ($params[0]) {
 
     case 'login':
         $controller = new AuthController();
-        $controller->login(); 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $controller->verificarLogin();
+        } else {
+            $controller->mostrarLogin();
+        }
+    break;
+
+    case 'verificarLogin':
+        $controller = new AuthController();
+        $controller->verificarLogin();
         break;
+
+    case 'register':
+        $controller = new AuthController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            $controller->register();
+        else
+            $controller->mostrarRegister();
+        break;
+
 
     case 'logout':
         $controller = new AuthController();

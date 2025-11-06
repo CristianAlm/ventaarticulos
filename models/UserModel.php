@@ -15,6 +15,20 @@ class UserModel {
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    public function getUsuarioPorNombre($username) {
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE username = ?');
+        $query->execute([$username]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function crearUsuario($username, $password, $rol = 'user') {
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $query = $this->db->prepare('INSERT INTO usuario (username, password, rol) VALUES (?, ?, ?)');
+        $query->execute([$username, $hash, $rol]);
+    }
+
+
+
     // Funciones (solo nombres, todavía no definidas)
     //public function login($username, $password); // Valida usuario y contraseña
     //public function logout(); // Cierra la sesión
