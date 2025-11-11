@@ -1,6 +1,15 @@
 
 <h1>Bienvenido a la Tienda</h1>
 
+<?php if (isset($_SESSION['username'])): ?>
+    <p>Bienvenido, <?= htmlspecialchars($_SESSION['username']) ?>!</p>
+    <a href="logout">Cerrar sesión</a>
+<?php else: ?>
+    <a href="login">Iniciar sesión</a> |
+    <a href="register">Registrarse</a>
+<?php endif; ?>
+
+
 <p>Explorá nuestros productos por categoría:</p>
 <a href="categoria" class="btn">Ver Categorías</a>
 

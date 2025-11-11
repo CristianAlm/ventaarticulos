@@ -32,6 +32,14 @@ class ProductoController {
         $this->view->mostrarDetalle($producto, $categoria);
     }
 
+    private function verificarSesionAdmin() {
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'admin') {
+            header('Location: ' . BASE_URL . '/login');
+            exit;
+        }
+    }
+
+
     // Lista todos los productos
     public function index() {}
 
