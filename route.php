@@ -35,15 +35,6 @@ switch ($params[0]) {
         }
         break;
 
-    case 'producto':
-        $controller = new ProductoController();
-        if (isset($params[1])) {
-            $controller->detalleProducto($params[1]);
-        } else {
-            echo "Producto no especificado";
-        }
-        break;
-
     case 'login':
         $controller = new AuthController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,6 +62,44 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->logout();
         break;
+
+    case 'producto':
+        $controller = new ProductoController();
+
+        // Si no hay segundo parámetro → listar productos
+        if (!isset($params[1])) {
+            $controller->listarProductos();
+            break;
+        }
+
+        switch ($params[1]) {
+
+            case 'agregar':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $controller->agregarProducto();
+                } else {
+                    $controller->mostrarFormAgregar();
+                }
+                break;
+
+            case 'editar':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $controller->editarProducto($params[2]);
+                } else {
+                    $controller->mostrarFormEditar($params[2]);
+                }
+                break;
+
+            case 'eliminar':
+                $controller->eliminarProducto($params[2]);
+                break;
+
+            default:
+                $controller->detalleProducto($params[1]);
+                break;
+        }
+        break;
+
 
     default:
         echo "404 Page not found";

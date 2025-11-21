@@ -1,8 +1,14 @@
-<main>
-    <h1><?= htmlspecialchars($producto['nombre']) ?></h1>
-    <p><strong>Categoría:</strong> <?= htmlspecialchars($categoria['nombre']) ?></p>
-    <p><strong>Precio:</strong> $<?= htmlspecialchars($producto['precio']) ?></p>
-    <p><strong>Descripción:</strong> <?= htmlspecialchars($producto['descripcion']) ?></p>
+<h1><?= htmlspecialchars($producto->nombre) ?></h1>
 
-    <a href="home">Volver al inicio</a>
-</main>
+<p><strong>Precio:</strong> $<?= $producto->precio ?></p>
+<p><strong>Descripción:</strong> <?= nl2br(htmlspecialchars($producto->descripcion)) ?></p>
+
+<?php if ($categoria): ?>
+    <p><strong>Categoría:</strong> <?= htmlspecialchars($categoria->nombre) ?></p>
+<?php endif; ?>
+
+<a href="<?= BASE_URL ?>producto">Volver al listado</a>
+
+<?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+    | <a href="<?= BASE_URL ?>producto/editarForm/<?= $producto->id_producto ?>">Editar</a>
+<?php endif; ?>

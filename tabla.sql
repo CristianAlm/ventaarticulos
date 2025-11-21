@@ -1,4 +1,4 @@
--- Crear la base de datos
+
 CREATE DATABASE IF NOT EXISTS tienda;
 USE tienda;
 
@@ -9,7 +9,7 @@ CREATE TABLE categoria (
     descripcion TEXT
 );
 
--- Tabla de productos
+
 CREATE TABLE producto (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
@@ -19,4 +19,10 @@ CREATE TABLE producto (
     FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
         ON DELETE CASCADE
         ON UPDATE CASCADE
+);
+
+CREATE TABLE usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );

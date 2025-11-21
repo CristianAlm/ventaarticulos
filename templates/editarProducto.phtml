@@ -1,0 +1,41 @@
+<h1>Editar producto</h1>
+
+<form action="<?= BASE_URL ?>producto/editar/<?= $producto->id_producto ?>" method="POST">
+
+    <label>Nombre:</label>
+    <input 
+        type="text" 
+        name="nombre" 
+        value="<?= htmlspecialchars($producto->nombre) ?>" 
+        required
+    >
+
+    <label>Precio:</label>
+    <input 
+        type="number" 
+        name="precio" 
+        value="<?= $producto->precio ?>" 
+        required
+    >
+
+    <label>Descripción:</label>
+    <textarea name="descripcion"><?= htmlspecialchars($producto->descripcion) ?></textarea>
+
+    <label>Categoría:</label>
+    <select name="id_categoria">
+        <option value="">Sin categoría</option>
+
+        <?php foreach ($categorias as $cat): ?>
+            <option 
+                value="<?= $cat->id_categoria ?>"
+                <?= ($cat->id_categoria == $producto->id_categoria) ? 'selected' : '' ?>
+            >
+                <?= htmlspecialchars($cat->nombre) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<a href="<?= BASE_URL ?>producto">Cancelar</a>

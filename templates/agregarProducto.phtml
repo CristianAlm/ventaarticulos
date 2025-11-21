@@ -1,0 +1,27 @@
+<h1>Agregar nuevo producto</h1>
+
+<form action="<?= BASE_URL ?>producto/agregar" method="POST">
+
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
+
+    <label>Precio:</label>
+    <input type="number" name="precio" required>
+
+    <label>Descripción:</label>
+    <textarea name="descripcion"></textarea>
+
+    <label>Categoría:</label>
+    <select name="id_categoria">
+        <option value="">Sin categoría</option>
+        <?php foreach ($categorias as $categoria): ?>
+            <option value="<?= $categoria->id_categoria ?>">
+                <?= htmlspecialchars($categoria->nombre) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="<?= BASE_URL ?>producto">Cancelar</a>

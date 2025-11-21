@@ -1,0 +1,20 @@
+<h1>Listado de Productos</h1>
+
+<?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+    <a class="btn btn-primary" href="producto/agregarForm">Agregar producto</a>
+<?php endif; ?>
+
+<?php foreach ($productos as $producto): ?>
+    <div class="producto">
+        <h3><?= htmlspecialchars($producto->nombre) ?></h3>
+        <p><strong>Precio:</strong> $<?= $producto->precio ?></p>
+        <a href="producto/<?= $producto->id_producto ?>">Ver detalle</a>
+
+        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+            | <a href="producto/editarForm/<?= $producto->id_producto ?>">Editar</a>
+            | <a href="producto/eliminar/<?= $producto->id_producto ?>" 
+                 onclick="return confirm('¿Seguro?')">Eliminar</a>
+        <?php endif; ?>
+    </div>
+    <hr>
+<?php endforeach; ?>
