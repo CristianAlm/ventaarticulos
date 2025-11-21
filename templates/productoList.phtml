@@ -1,7 +1,7 @@
 <h1>Listado de Productos</h1>
 
 <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
-    <a class="btn btn-primary" href="producto/agregarForm">Agregar producto</a>
+    <a class="btn btn-primary" href="producto/agregar">Agregar producto</a>
 <?php endif; ?>
 
 <?php foreach ($productos as $producto): ?>
@@ -11,7 +11,7 @@
         <a href="producto/<?= $producto->id_producto ?>">Ver detalle</a>
 
         <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
-            | <a href="producto/editarForm/<?= $producto->id_producto ?>">Editar</a>
+            | <a href="producto/editar/<?= $producto->id_producto ?>">Editar</a>
             | <a href="producto/eliminar/<?= $producto->id_producto ?>" 
                  onclick="return confirm('¿Seguro?')">Eliminar</a>
         <?php endif; ?>

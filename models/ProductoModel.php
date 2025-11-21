@@ -25,20 +25,25 @@ class ProductoModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    public function insertarProducto($nombre, $precio, $descripcion = null) {
+    public function insertarProducto($nombre, $precio, $descripcion, $id_categoria) {
         $query = $this->db->prepare(
-            "INSERT INTO producto (nombre, precio, descripcion) VALUES (?, ?, ?)"
+            "INSERT INTO producto (nombre, precio, descripcion, id_categoria) VALUES (?, ?, ?, ?)"
         );
-        $query->execute([$nombre, $precio, $descripcion]);
+        $query->execute([$nombre, $precio, $descripcion, $id_categoria]);
         return $this->db->lastInsertId();
     }
 
-    public function actualizarProducto($id, $nombre, $precio, $descripcion = null) {
+    public function actualizarProducto($id, $nombre, $precio, $descripcion, $id_categoria) {
         $query = $this->db->prepare(
-            "UPDATE producto SET nombre = ?, precio = ?, descripcion = ? WHERE id_producto = ?"
+            "UPDATE producto 
+            SET nombre = ?, precio = ?, descripcion = ?, id_categoria = ?
+            WHERE id_producto = ?"
         );
-        return $query->execute([$nombre, $precio, $descripcion, $id]);
+
+        return $query->execute([$nombre, $precio, $descripcion, $id_categoria, $id]);
     }
+
+
 
     public function eliminarProducto($id) {
         $query = $this->db->prepare("DELETE FROM producto WHERE id_producto = ?");

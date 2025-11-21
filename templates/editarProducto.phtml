@@ -22,10 +22,11 @@
     <textarea name="descripcion"><?= htmlspecialchars($producto->descripcion) ?></textarea>
 
     <label>Categoría:</label>
+
     <select name="id_categoria">
         <option value="">Sin categoría</option>
 
-        <?php foreach ($categorias as $cat): ?>
+        <?php foreach ($categoria as $cat): ?>
             <option 
                 value="<?= $cat->id_categoria ?>"
                 <?= ($cat->id_categoria == $producto->id_categoria) ? 'selected' : '' ?>

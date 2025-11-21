@@ -7,3 +7,5 @@ Tematica: Sera un supermercado
 Descripcion: Un supermercado que venda diferentes tipos de productos y cada uno tendra su categoria de producto. Por ejemplo articulos de limpieza(lavandina, escoba,etc), lacteo(leche,queso), carne(roja, blanca), etc.
 
 El diagrama le saque captura y la base de datos la agregue a un archivo
+
+Hay dos usuarios creados! los dos con la contraseña 1234, el usuario primero es un usuario comun y el usuario admin tiene la capacidad de utilizar el crud

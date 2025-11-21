@@ -12,11 +12,12 @@
     <textarea name="descripcion"></textarea>
 
     <label>Categoría:</label>
+
     <select name="id_categoria">
         <option value="">Sin categoría</option>
-        <?php foreach ($categorias as $categoria): ?>
-            <option value="<?= $categoria->id_categoria ?>">
-                <?= htmlspecialchars($categoria->nombre) ?>
+        <?php foreach ($categoria as $c): ?>
+            <option value="<?= $c->id_categoria ?>">
+                <?= htmlspecialchars($c->nombre) ?>
             </option>
         <?php endforeach; ?>
     </select>

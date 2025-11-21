@@ -62,7 +62,7 @@ class ProductoController {
             return;
         }
 
-        $this->productoModel->insert($nombre, $precio, $descripcion, $id_categoria);
+        $this->productoModel->insertarProducto($nombre, $precio, $descripcion, $id_categoria);
 
         header("Location: " . BASE_URL . "producto");
         exit;
@@ -71,7 +71,7 @@ class ProductoController {
     public function mostrarFormEditar($id) {
         $this->auth->checkAdmin();
 
-        $producto = $this->productoModel->getProductoById($id);
+        $producto = $this->productoModel->obtenerPorId($id);
         $categorias = $this->categoriaModel->getCategorias();
 
         if (!$producto) {
@@ -95,7 +95,7 @@ class ProductoController {
         $descripcion = $_POST['descripcion'] ?? "";
         $id_categoria = $_POST['id_categoria'] ?? null;
 
-        $this->productoModel->update($id, $nombre, $precio, $descripcion, $id_categoria);
+        $this->productoModel->actualizarProducto($id, $nombre, $precio, $descripcion, $id_categoria);
 
         header("Location: " . BASE_URL . "producto");
         exit;

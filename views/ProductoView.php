@@ -12,11 +12,11 @@ class ProductoView {
         require 'templates/productoList.phtml';
     }
 
-    public function mostrarFormularioAgregar() {
+    public function mostrarFormularioAgregar($categoria) {
         require 'templates/agregarProducto.phtml';
     }
 
-    public function mostrarFormularioEditar($producto) {
+    public function mostrarFormularioEditar($producto, $categoria) {
         require 'templates/editarProducto.phtml';
     }
 

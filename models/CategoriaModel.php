@@ -15,7 +15,7 @@ class CategoriaModel {
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // 🧠 FUNCIONES DEL MODELO
+    
     public function getAll(){
          $query = $this->db->prepare('SELECT * FROM categoria');
         $query->execute();
@@ -23,22 +23,16 @@ class CategoriaModel {
     }
 
     public function getCategorias() {
-        $sql = "SELECT * FROM categoria";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ); // devuelve un array asociativo
+        $query = $this->db->prepare("SELECT * FROM categoria");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
 
     public function getCategoriaById($id) {
         $query = $this->db->prepare('SELECT * FROM categoria WHERE id_categoria = ?');
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ); 
     }
-    
-    // devuelve todas las categorías
-    //public function getById($id);         // devuelve una categoría por su ID
-    //public function add($nombre, $descripcion, $imagen = null); // agrega una nueva categoría
-    //public function update($id, $nombre, $descripcion, $imagen = null); // edita una categoría
-    //public function delete($id);          // elimina una categoría
 }
 
